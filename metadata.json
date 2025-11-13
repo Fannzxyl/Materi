@@ -1,0 +1,5 @@
+{
+  "name": "Nihongo Sensei AI",
+  "description": "An interactive AI-powered web app to learn Japanese from your 'Minna no Nihongo' textbook. Upload your PDF and get structured lessons, grammar explanations, and quizzes in Indonesian.",
+  "requestFramePermissions": []
+}
