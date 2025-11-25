@@ -298,9 +298,13 @@ const initialResponseSchema = {
 };
 
 const getGeminiAI = () => {
-  // API key is now managed globally by the framework
-  // We can assume process.env.API_KEY is available
-  return new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+  // Use process.env.API_KEY if available (from Vite define/Vercel)
+  // Fallback to localStorage for manual user entry
+  const apiKey = process.env.API_KEY || localStorage.getItem('google_api_key') || '';
+  if (!apiKey) {
+     throw new Error("error_no_api_key");
+  }
+  return new GoogleGenAI({ apiKey });
 };
 
 export const generateInitialLearningData = async (file: File, language: 'id' | 'en' | 'ja'): Promise<LearningData> => {

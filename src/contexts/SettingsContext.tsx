@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, useEffect, useMemo } from 'react';
 import translations from '../translations';
 
@@ -16,6 +15,10 @@ const SettingsContext = createContext<SettingsContextType | undefined>(undefined
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [apiKey, setApiKeyState] = useState<string | null>(() => {
+    // Check environment variable first (Vercel/Vite config)
+    if (process.env.API_KEY) {
+      return process.env.API_KEY;
+    }
     try {
       return localStorage.getItem('google_api_key');
     } catch {
@@ -34,9 +37,10 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     try {
-      if (apiKey) {
+      // Do not overwrite local storage if the key comes from env
+      if (apiKey && apiKey !== process.env.API_KEY) {
         localStorage.setItem('google_api_key', apiKey);
-      } else {
+      } else if (!apiKey) {
         localStorage.removeItem('google_api_key');
       }
     } catch (error) {

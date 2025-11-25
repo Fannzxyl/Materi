@@ -32,6 +32,12 @@ function App() {
 
   useEffect(() => {
     const checkApiKey = async () => {
+      // If Env Var is present, we are good.
+      if (process.env.API_KEY) {
+        setApiKey(process.env.API_KEY);
+        return;
+      }
+
       const key = localStorage.getItem('google_api_key');
       if (!key) {
         // Use aistudio.hasSelectedApiKey if it exists
@@ -41,7 +47,7 @@ function App() {
                 setIsApiKeyModalOpen(true);
            } else {
              // If aistudio has key, we might not have it in localStorage yet
-             // but we can proceed. The framework handles process.env.API_KEY
+             // but we can proceed.
              if (apiKey === null) setApiKey(''); // Set a dummy value to satisfy checks
            }
         } else {
@@ -68,8 +74,9 @@ function App() {
   }, []); // Run only once on mount
 
   const isReady = (): boolean => {
+    if (process.env.API_KEY) return true;
     if (apiKey) return true;
-    if (window.aistudio && process.env.API_KEY) return true;
+    if (window.aistudio) return true; // Assume true if aistudio is present, handled by service
     return false;
   }
 
@@ -204,7 +211,7 @@ function App() {
     <div className="h-screen w-screen overflow-hidden">
       {error && <ErrorToast message={error} onDismiss={() => setError(null)} />}
       
-      {!apiKey && <APIKeyModal isOpen={isApiKeyModalOpen} onClose={() => setIsApiKeyModalOpen(false)} />}
+      {!process.env.API_KEY && !apiKey && <APIKeyModal isOpen={isApiKeyModalOpen} onClose={() => setIsApiKeyModalOpen(false)} />}
       <SettingsModal isOpen={isSettingsModalOpen} onClose={() => setIsSettingsModalOpen(false)} />
 
       {renderContent()}
