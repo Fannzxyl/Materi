@@ -80,6 +80,21 @@ function App() {
     return false;
   }
 
+  const handleApiError = (err: any) => {
+    // Check if error is related to API Key validity
+    const errorMessage = err.message || '';
+    if (errorMessage.includes('API key') || errorMessage.includes('403') || errorMessage.includes('PERMISSION_DENIED') || errorMessage === 'ERROR_API_KEY') {
+        // Clear the invalid key
+        localStorage.removeItem('google_api_key');
+        setApiKey('');
+        // Show modal for new key
+        setIsApiKeyModalOpen(true);
+        setError(t('apiKeyModal_error_invalid') + " (Key reported as leaked/invalid)");
+    } else {
+        setError(t(err.message) || t('error_unknown'));
+    }
+  };
+
   const handleFileUpload = async (file: File) => {
     if (!isReady()) {
         setError(t('error_no_api_key'));
@@ -95,7 +110,7 @@ function App() {
       setLearningData(data);
       localStorage.setItem(LEARNING_DATA_KEY, JSON.stringify(data));
     } catch (err: any) {
-      setError(t(err.message) || t('error_unknown'));
+      handleApiError(err);
       setUploadedFile(null);
     } finally {
       setIsLoading(false);
@@ -122,7 +137,7 @@ function App() {
       setLearningData(data);
       // Not saving to localStorage to keep it as a temporary session
     } catch (err: any) {
-      setError(t(err.message) || t('error_unknown'));
+      handleApiError(err);
     } finally {
       setIsLoading(false);
     }
@@ -151,7 +166,7 @@ function App() {
         }
       }
     } catch (err: any) {
-      setError(t(err.message) || t('error_unknown'));
+       handleApiError(err);
     } finally {
       setIsExtending(false);
     }

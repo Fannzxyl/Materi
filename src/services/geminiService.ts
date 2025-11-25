@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { LearningData, Lesson, ChatMessage, LessonIndexItem } from '../types';
 
@@ -329,8 +328,12 @@ export const generateInitialLearningData = async (file: File, language: 'id' | '
     const parsedData: LearningData = JSON.parse(jsonString);
     return parsedData;
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error generating initial learning data:", error);
+    // Propagate API Key errors specifically
+    if (error.message && (error.message.includes('API key') || error.message.includes('403') || error.message.includes('PERMISSION_DENIED'))) {
+        throw error;
+    }
     throw new Error("error_pdf_analysis_failed");
   }
 };
@@ -371,8 +374,11 @@ export const generateSpecificLessons = async (file: File, lessonsToGenerate: Les
     }
     return [];
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error generating specific lessons:", error);
+    if (error.message && (error.message.includes('API key') || error.message.includes('403') || error.message.includes('PERMISSION_DENIED'))) {
+        throw error;
+    }
     throw new Error("error_load_more_failed");
   }
 };
@@ -397,8 +403,11 @@ export const generateLessonFromText = async (text: string, language: 'id' | 'en'
     const parsedData: Lesson = JSON.parse(jsonString);
     return parsedData;
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error generating lesson from text:", error);
+    if (error.message && (error.message.includes('API key') || error.message.includes('403') || error.message.includes('PERMISSION_DENIED'))) {
+        throw error;
+    }
     throw new Error("error_text_analysis_failed");
   }
 };
@@ -431,8 +440,11 @@ export const generateChatResponse = async (currentLesson: Lesson, chatHistory: C
       contents: prompt,
     });
     return (response.text || "").trim();
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error generating chat response:", error);
+    if (error.message && (error.message.includes('API key') || error.message.includes('403') || error.message.includes('PERMISSION_DENIED'))) {
+        return "ERROR_API_KEY";
+    }
     if (language === 'id') return "Maaf, saya sedang mengalami sedikit gangguan. Bisakah Anda mencoba lagi nanti?";
     if (language === 'ja') return "申し訳ありませんが、現在少し問題が発生しています。後でもう一度お試しいただけますか？";
     return "Sorry, I'm having a little trouble right now. Could you try again later?";
