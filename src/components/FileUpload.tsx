@@ -85,7 +85,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload, onTextSubmit, isA
                     type="file"
                     id="file-upload"
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    accept=".pdf"
+                    accept=".pdf,.docx"
                     onChange={handleFileChange}
                     disabled={!isApiKeySet}
                 />
@@ -96,7 +96,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload, onTextSubmit, isA
                     <p className="font-semibold">
                         <label htmlFor="file-upload" className={`font-semibold ${isApiKeySet ? 'text-rose-500 hover:text-rose-600 cursor-pointer' : 'text-slate-400 dark:text-slate-500'}`}>{t('fileUpload_select')}</label> {t('fileUpload_orDrag')}
                     </p>
-                    <p className="text-sm">{t('fileUpload_pdfOnly')}</p>
+                    <p className="text-sm">{t('fileUpload_supportedFormats')}</p>
                 </div>
             </div>
         )}

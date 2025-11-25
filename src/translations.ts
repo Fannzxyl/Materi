@@ -5,15 +5,15 @@ type Translations = {
 const translations: { [lang: string]: Translations } = {
   id: {
     // FileUpload
-    'fileUpload_subtitle': 'Ubah PDF "Minna no Nihongo" Anda menjadi pelajaran interaktif!',
+    'fileUpload_subtitle': 'Ubah PDF & DOCX "Minna no Nihongo" Anda menjadi pelajaran interaktif!',
     'fileUpload_select': 'Pilih file',
     'fileUpload_orDrag': 'atau jatuhkan di sini',
-    'fileUpload_pdfOnly': 'Hanya file PDF yang didukung',
+    'fileUpload_supportedFormats': 'File PDF & DOCX didukung',
     'fileUpload_disclaimer': 'Aplikasi ini ditenagai oleh AI. Harap verifikasi informasi penting.',
     'fileUpload_apiKeyNeeded_1': 'Harap',
     'fileUpload_apiKeyNeeded_2': 'masukkan Kunci API Anda',
     'fileUpload_apiKeyNeeded_3': 'untuk memulai.',
-    'fileUpload_tab_pdf': 'Belajar dari PDF',
+    'fileUpload_tab_pdf': 'Belajar dari Dokumen',
     'fileUpload_tab_text': 'Belajar dari Teks',
     'fileUpload_text_placeholder': 'Tempelkan transkrip YouTube atau teks lain di sini untuk diubah menjadi pelajaran...',
     'fileUpload_text_button': 'Buat Pelajaran',
@@ -25,7 +25,7 @@ const translations: { [lang: string]: Translations } = {
     // Errors
     'error_no_api_key': 'Kunci API diperlukan untuk melanjutkan.',
     'error_unknown': 'Terjadi kesalahan yang tidak diketahui.',
-    'error_pdf_analysis_failed': 'Gagal menganalisis buku. Pastikan PDF Anda adalah buku teks Minna no Nihongo yang jelas dan coba lagi.',
+    'error_pdf_analysis_failed': 'Gagal menganalisis dokumen. Pastikan dokumen Anda adalah buku teks Minna no Nihongo yang jelas dan coba lagi.',
     'error_text_analysis_failed': 'Gagal membuat pelajaran dari teks. Harap periksa teksnya dan coba lagi.',
     'error_load_more_failed': 'Gagal memuat pelajaran tambahan.',
     'error_oops': 'Oops! Terjadi Kesalahan',
@@ -126,15 +126,15 @@ const translations: { [lang: string]: Translations } = {
   },
   en: {
     // FileUpload
-    'fileUpload_subtitle': 'Turn your "Minna no Nihongo" PDF into interactive lessons!',
+    'fileUpload_subtitle': 'Turn your "Minna no Nihongo" PDF & DOCX into interactive lessons!',
     'fileUpload_select': 'Choose a file',
     'fileUpload_orDrag': 'or drop it here',
-    'fileUpload_pdfOnly': 'Only PDF files are supported',
+    'fileUpload_supportedFormats': 'PDF & DOCX files are supported',
     'fileUpload_disclaimer': 'This app is powered by AI. Please verify important information.',
     'fileUpload_apiKeyNeeded_1': 'Please',
     'fileUpload_apiKeyNeeded_2': 'enter your API Key',
     'fileUpload_apiKeyNeeded_3': 'to get started.',
-    'fileUpload_tab_pdf': 'Learn from PDF',
+    'fileUpload_tab_pdf': 'Learn from Document',
     'fileUpload_tab_text': 'Learn from Text',
     'fileUpload_text_placeholder': 'Paste a YouTube transcript or other text here to turn it into a lesson...',
     'fileUpload_text_button': 'Create Lesson',
@@ -146,7 +146,7 @@ const translations: { [lang: string]: Translations } = {
     // Errors
     'error_no_api_key': 'API Key is required to proceed.',
     'error_unknown': 'An unknown error occurred.',
-    'error_pdf_analysis_failed': 'Failed to analyze the book. Ensure your PDF is a clear Minna no Nihongo textbook and try again.',
+    'error_pdf_analysis_failed': 'Failed to analyze the document. Ensure your document is a clear Minna no Nihongo textbook and try again.',
     'error_text_analysis_failed': 'Failed to create a lesson from the text. Please check the text and try again.',
     'error_load_more_failed': 'Failed to load additional lessons.',
     'error_oops': 'Oops! An Error Occurred',
@@ -247,15 +247,15 @@ const translations: { [lang: string]: Translations } = {
   },
   ja: {
     // FileUpload
-    'fileUpload_subtitle': '「みんなの日本語」のPDFをインタラクティブなレッスンに！',
+    'fileUpload_subtitle': '「みんなの日本語」のPDFやDOCXをインタラクティブなレッスンに！',
     'fileUpload_select': 'ファイルを選択',
     'fileUpload_orDrag': 'またはここにドラッグ＆ドロップ',
-    'fileUpload_pdfOnly': 'PDFファイルのみ対応しています',
+    'fileUpload_supportedFormats': 'PDFとDOCXファイルに対応しています',
     'fileUpload_disclaimer': 'このアプリはAIを使用しています。重要な情報はご確認ください。',
     'fileUpload_apiKeyNeeded_1': '開始するには',
     'fileUpload_apiKeyNeeded_2': 'APIキーを入力してください',
     'fileUpload_apiKeyNeeded_3': '。',
-    'fileUpload_tab_pdf': 'PDFから学ぶ',
+    'fileUpload_tab_pdf': 'ドキュメントから学ぶ',
     'fileUpload_tab_text': 'テキストから学ぶ',
     'fileUpload_text_placeholder': 'ここにYouTubeの文字起こしや他のテキストを貼り付けて、レッスンに変換します...',
     'fileUpload_text_button': 'レッスンを作成',
@@ -267,7 +267,7 @@ const translations: { [lang: string]: Translations } = {
     // Errors
     'error_no_api_key': '続行するにはAPIキーが必要です。',
     'error_unknown': '不明なエラーが発生しました。',
-    'error_pdf_analysis_failed': '書籍を分析できませんでした。PDFが明確な「みんなの日本語」の教科書であることを確認して、もう一度お試しください。',
+    'error_pdf_analysis_failed': 'ドキュメントを分析できませんでした。ドキュメントが明確な「みんなの日本語」の教科書であることを確認して、もう一度お試しください。',
     'error_text_analysis_failed': 'テキストからレッスンを作成できませんでした。テキストを確認して、もう一度お試しください。',
     'error_load_more_failed': '追加のレッスンを読み込めませんでした。',
     'error_oops': '問題が発生しました',
