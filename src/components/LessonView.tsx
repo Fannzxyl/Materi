@@ -287,7 +287,7 @@ const LessonView: React.FC<LessonViewProps> = ({ learningData, onReset, onLoadMo
 
   const handleNextLesson = () => {
     if (!isLastLesson) {
-        setActiveLessonIndex(prevIndex => prevIndex + 1);
+        setActiveLessonIndex((prevIndex: number) => prevIndex + 1);
         setActiveTopic('Ringkasan');
         return true;
     }
@@ -296,7 +296,7 @@ const LessonView: React.FC<LessonViewProps> = ({ learningData, onReset, onLoadMo
 
   const handlePreviousLesson = () => {
     if (!isFirstLesson) {
-        setActiveLessonIndex(prevIndex => prevIndex - 1);
+        setActiveLessonIndex((prevIndex: number) => prevIndex - 1);
         setActiveTopic('Ringkasan');
     }
   };

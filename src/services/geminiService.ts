@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { LearningData, Lesson, ChatMessage, LessonIndexItem } from '../types';
 
@@ -322,7 +323,9 @@ export const generateInitialLearningData = async (file: File, language: 'id' | '
       },
     });
 
-    let jsonString = response.text.trim();
+    const text = response.text;
+    if (!text) throw new Error("No text generated");
+    let jsonString = text.trim();
     const parsedData: LearningData = JSON.parse(jsonString);
     return parsedData;
 
@@ -358,7 +361,9 @@ export const generateSpecificLessons = async (file: File, lessonsToGenerate: Les
       },
     });
 
-    let jsonString = response.text.trim();
+    const text = response.text;
+    if (!text) throw new Error("No text generated");
+    let jsonString = text.trim();
     const parsedData: { pelajaran: Lesson[] } = JSON.parse(jsonString);
 
     if (parsedData && Array.isArray(parsedData.pelajaran)) {
@@ -386,7 +391,9 @@ export const generateLessonFromText = async (text: string, language: 'id' | 'en'
       },
     });
 
-    let jsonString = response.text.trim();
+    const respText = response.text;
+    if (!respText) throw new Error("No text generated");
+    let jsonString = respText.trim();
     const parsedData: Lesson = JSON.parse(jsonString);
     return parsedData;
 
@@ -423,7 +430,7 @@ export const generateChatResponse = async (currentLesson: Lesson, chatHistory: C
       model: 'gemini-2.5-flash', // Use a faster model for chat
       contents: prompt,
     });
-    return response.text.trim();
+    return (response.text || "").trim();
   } catch (error) {
     console.error("Error generating chat response:", error);
     if (language === 'id') return "Maaf, saya sedang mengalami sedikit gangguan. Bisakah Anda mencoba lagi nanti?";
